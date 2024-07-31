@@ -5,8 +5,8 @@ pipeline {
         stage('Compile') {
             steps {
                 script {
-                    // Compile the project using Maven
-                    sh 'mvn clean compile'
+                    // Compile the project using Maven (Windows batch command)
+                    bat 'mvn clean compile'
                 }
             }
         }
@@ -14,8 +14,8 @@ pipeline {
         stage('Unit Test') {
             steps {
                 script {
-                    // Run unit tests using Maven
-                    sh 'mvn test'
+                    // Run unit tests using Maven (Windows batch command)
+                    bat 'mvn test'
                 }
             }
         }
@@ -23,8 +23,8 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    // Package the application into a WAR file
-                    sh 'mvn package'
+                    // Package the application into a WAR file (Windows batch command)
+                    bat 'mvn package'
                 }
             }
             post {
