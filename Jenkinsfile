@@ -27,9 +27,9 @@ pipeline {
                     sh 'mvn package'
                 }
             }
-            post{
-                success{
-                    echo "Archiving the artifacts"
+            post {
+                success {
+                    echo 'Archiving the artifacts'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
@@ -37,7 +37,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: '48558a38-e5fe-495f-b83b-5bccc592e198', path: '', url: 'http://localhost:8082/')], contextPath: null, war: '**/*.war'
+                script {
+                    // Deploy the WAR file to Tomcat
+                    deploy adapters: [tomcat9(credentialsId: '48558a38-e5fe-495f-b83b-5bccc592e198', path: '', url: 'http://localhost:8082/')],
+                            war: '**/*.war'
+                }
             }
         }
     }
